@@ -1,4 +1,4 @@
-System.register(['angular2/platform/browser', './app.component'], function(exports_1) {
+System.register(['angular2/platform/browser', "./app.component"], function (exports_1) {
     var browser_1, app_component_1;
     return {
         setters:[
@@ -13,7 +13,4 @@ System.register(['angular2/platform/browser', './app.component'], function(expor
         }
     }
 });
-/**
- * Created by roberto on 03/03/2016.
- */
 //# sourceMappingURL=main.js.map

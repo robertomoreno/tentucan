@@ -1,15 +1,15 @@
 package com.tentucan.web.model;
 
-public class Customer {
+public class User {
 
     private String id;
     private String name;
     private String mail;
 
-    public Customer() {
+    public User() {
     }
 
-    public Customer(String name, String mail) {
+    public User(String name, String mail) {
         this.name = name;
         this.mail = mail;
     }
