@@ -1,4 +1,6 @@
-System.register(["angular2/core", "./components/users/users.component", "./services/user.service", "angular2/http", 'angular2/router', "./components/home/home.component", "./components/users/user-detail.component", "./components/application/application.component"], function (exports_1) {
+System.register(["angular2/core", "./components/users/users.component", "./services/user.service", "angular2/http", "angular2/router", "./components/home/home.component", "./components/users/user-detail.component", "./components/application/application.component", "./services/login.service"], function(exports_1, context_1) {
+    "use strict";
+    var __moduleName = context_1 && context_1.id;
     var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
         var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
         if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -8,7 +10,7 @@ System.register(["angular2/core", "./components/users/users.component", "./servi
     var __metadata = (this && this.__metadata) || function (k, v) {
         if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
     };
-    var core_1, users_component_1, user_service_1, http_1, router_1, home_component_1, user_detail_component_1, application_component_1;
+    var core_1, users_component_1, user_service_1, http_1, router_1, home_component_1, user_detail_component_1, application_component_1, login_service_1;
     var AppComponent;
     return {
         setters:[
@@ -35,18 +37,25 @@ System.register(["angular2/core", "./components/users/users.component", "./servi
             },
             function (application_component_1_1) {
                 application_component_1 = application_component_1_1;
+            },
+            function (login_service_1_1) {
+                login_service_1 = login_service_1_1;
             }],
         execute: function() {
             AppComponent = (function () {
-                function AppComponent() {
+                function AppComponent(loginService) {
+                    this.loginService = loginService;
                     this.title = 'Tentucan App';
                 }
+                AppComponent.prototype.ngOnInit = function () {
+                    this.loginService.authenticatedUser().subscribe(function (result) { return console.log(result); }, function (error) { return console.error(error); });
+                };
                 AppComponent = __decorate([
                     core_1.Component({
                         selector: 'my-app',
                         template: "\n        <h1>{{title}}</h1>\n        <a [routerLink]=\"['Home']\">Home</a>\n        <a [routerLink]=\"['Application']\">Application</a>\n        <a [routerLink]=\"['Users']\">Users</a>\n        <router-outlet></router-outlet>\n  ",
                         directives: [router_1.ROUTER_DIRECTIVES],
-                        providers: [user_service_1.UserService, http_1.HTTP_PROVIDERS, router_1.ROUTER_PROVIDERS]
+                        providers: [user_service_1.UserService, login_service_1.LoginService, http_1.HTTP_PROVIDERS, router_1.ROUTER_PROVIDERS]
                     }),
                     router_1.RouteConfig([
                         {
@@ -71,10 +80,10 @@ System.register(["angular2/core", "./components/users/users.component", "./servi
                             component: application_component_1.ApplicationComponent
                         }
                     ]), 
-                    __metadata('design:paramtypes', [])
+                    __metadata('design:paramtypes', [login_service_1.LoginService])
                 ], AppComponent);
                 return AppComponent;
-            })();
+            }());
             exports_1("AppComponent", AppComponent);
         }
     }
