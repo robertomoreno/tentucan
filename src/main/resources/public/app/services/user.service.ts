@@ -1,10 +1,7 @@
-import {Injectable} from 'angular2/core';
-import {User} from '../model/User';
-import {Http, Response} from "angular2/http";
+import {Injectable} from "angular2/core";
+import {User} from "../model/User";
+import {Http, Response, RequestOptions, Headers} from "angular2/http";
 import {Observable} from "rxjs/Observable";
-import {RequestOptions} from "angular2/http";
-import {ajaxGetJSON} from "rxjs/observable/dom/AjaxObservable";
-import {Headers} from "angular2/http";
 
 @Injectable()
 export class UserService {
@@ -15,9 +12,7 @@ export class UserService {
 
     getUsers() {
         return this.http.get(this.userUrl)
-            .map(result => {
-                return <User[]> result.json()._embedded.users
-            })
+            .map(result => <User[]> result.json()._embedded.users)
             .catch(this.handleError);
     }
 

@@ -1,4 +1,6 @@
 /src/main/resources/application.yml
+/src/main/resources/public/typings
+/src/main/resources/public/node_modules
 target/
 *.iml
 .idea/
